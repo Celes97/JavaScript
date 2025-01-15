@@ -1,86 +1,85 @@
-//prueba de carrito
-const productos = [
-    { id: 1, nombre: "buzo", precio: 10000 },
-    { id: 2, nombre: "sweater", precio: 25000 },
-    { id: 3, nombre: "remera", precio: 8000 }
-];
+// Inicialización de variables
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+let total = parseFloat(localStorage.getItem('total')) || 0;
+let productos = [];
 
-    let carrito = [];
-    let total = 0;
+// Cargar los productos desde el archivo JSON
+fetch('data/productos.json')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error al cargar el archivo JSON');
+        }
+        return response.json();
+    })
+    .then(data => {
+        productos = data;
+        mostrarProductos(); // Una vez cargados los productos, los mostramos
+        actualizarCarrito(); // Actualizamos el carrito al inicio
+    })
+    .catch(error => console.error('Error al cargar los productos:', error));
 
+// Función para mostrar los productos en la página
 function mostrarProductos() {
-    console.log("Productos disponibles:");
+    const contenedorProductos = document.getElementById("productos");
+    contenedorProductos.innerHTML = ''; // Limpiar el contenedor antes de mostrar los productos
+
     productos.forEach(producto => {
-    console.log(`${producto.id}. ${producto.nombre} - $${producto.precio}`);
+        const divProducto = document.createElement("div");
+        divProducto.classList.add("producto");
+
+        divProducto.innerHTML = `
+            <p>${producto.nombre} - $${producto.precio}</p>
+            <button onclick="agregarAlCarrito(${producto.id})">Agregar al carrito</button>
+        `;
+        contenedorProductos.appendChild(divProducto);
     });
 }
 
+// Función para agregar un producto al carrito
 function agregarAlCarrito(idProducto) {
     const producto = productos.find(prod => prod.id === idProducto);
     if (producto) {
-    carrito.push(producto);
-    total += producto.precio;
-    console.log(`Se ha agregado al carrito: ${producto.nombre}`);
-    } else {
-    console.log("Producto no encontrado.");
+        carrito.push(producto);
+        total += producto.precio;
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        localStorage.setItem('total', total);
+
+        actualizarCarrito();
     }
 }
 
-function verCarrito() {
+// Función para actualizar la visualización del carrito y total
+function actualizarCarrito() {
+    const contenedorCarrito = document.getElementById("carrito");
+    const totalElement = document.getElementById("total");
+
     if (carrito.length === 0) {
-    console.log("El carrito está vacío.");
+        contenedorCarrito.innerHTML = "<p>El carrito está vacío.</p>";
     } else {
-    console.log("Tu carrito contiene los siguientes productos:");
-    carrito.forEach(item => {
-        console.log(`${item.nombre} - $${item.precio}`);
-    });
-    console.log(`Total a pagar: $${total}`);
+        contenedorCarrito.innerHTML = "<ul>" + carrito.map(item => `<li>${item.nombre} - $${item.precio}</li>`).join('') + "</ul>";
     }
+
+    totalElement.textContent = `Total a pagar: $${total}`;
 }
 
+// Función para confirmar la compra
 function confirmarCompra() {
     if (carrito.length === 0) {
-    alert("No hay productos en el carrito para comprar.");
+        alert("No hay productos en el carrito para comprar.");
     } else {
-    const confirmacion = confirm(`¿Deseas comprar estos productos por un total de $${total}?`);
-    if (confirmacion) {
-        alert("¡Compra realizada con éxito!");
-        carrito = []; // Vaciar el carrito después de la compra
-        total = 0; // Resetear el total
-    } else {
-        alert("Compra cancelada.");
-    }
+        const confirmacion = confirm(`¿Deseas comprar estos productos por un total de $${total}?`);
+        if (confirmacion) {
+            alert("¡Compra realizada con éxito!");
+            carrito = [];
+            total = 0;
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            localStorage.setItem('total', total);
+            actualizarCarrito();
+        } else {
+            alert("Compra cancelada.");
+        }
     }
 }
 
-function iniciar() {
-    let seguir = true;
-    while (seguir) {
-    let opcion = prompt("¿Qué deseas hacer?\n1. Ver productos\n2. Agregar producto al carrito\n3. Ver carrito\n4. Confirmar compra\n5. Salir");
-    switch (opcion) {
-        case "1":
-            mostrarProductos();
-        break;
-        case "2":
-    let idProducto = prompt("Ingresa el numero del producto que desea agregar:");
-        agregarAlCarrito(parseInt(idProducto));
-        break;
-        case "3":
-            verCarrito();
-        break;
-        case "4":
-            confirmarCompra();
-        break;
-        case "5":
-            alert("Gracias por visitar nuestra tienda. ¡Hasta pronto!");
-        seguir = false;
-        return;
-        break;
-        default:
-        alert("Opción no válida. Por favor, elige una opción válida.");
-        break;
-}
-    }
-}
-
-iniciar();
+// Evento para manejar la confirmación de compra
+document.getElementById('comprarButton').addEventListener('click', confirmarCompra);

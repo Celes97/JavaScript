@@ -1,15 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>clase java script</title>
+    <title>Simulador de Carrito de Compras</title>
     <script defer src="js/main.js"></script>
+
+    <!--estilo propio de CSS-->
+    <link rel="stylesheet" href="CSS/style.css">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .producto {
+            margin: 10px 0;
+        }
+        .producto button {
+            padding: 5px 10px;
+        }
+        #carrito, #total {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>carrito de compras</h1>
-    <p>Este simulador te permite interactuar con una tienda virtual donde puedes agregar productos a tu carrito, 
-        ver el contenido del mismo, realizar la compra, o salir. El carrito acumula productos y muestra el total a pagar.</p>
+    <h1>Carrito de Compras</h1>
+    <p>Este simulador te permite agregar productos a tu carrito, ver el contenido del carrito y realizar la compra.</p>
+
+    <h2>Productos disponibles:</h2>
+    <div id="productos"></div> <!-- Aquí se cargarán los productos desde el JSON -->
+
+    <h2>Tu carrito:</h2>
+    <div id="carrito">
+        <p>El carrito está vacío.</p>
+    </div>
+
+    <p id="total">Total a pagar: $0</p>
+
+    <button id="comprarButton">Confirmar Compra</button>
 
 </body>
 </html>
+

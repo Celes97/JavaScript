@@ -1,0 +1,5 @@
+[
+    { "id": 1, "nombre": "Buzo", "precio": 10000 },
+    { "id": 2, "nombre": "Sweater", "precio": 25000 },
+    { "id": 3, "nombre": "Remera", "precio": 8000 }
+]
