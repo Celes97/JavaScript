@@ -3,7 +3,6 @@ let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 let total = parseFloat(localStorage.getItem('total')) || 0;
 let productos = [];
 
-// Cargar los productos desde el archivo JSON
 fetch('data/productos.json')
     .then(response => {
         if (!response.ok) {
@@ -13,15 +12,15 @@ fetch('data/productos.json')
     })
     .then(data => {
         productos = data;
-        mostrarProductos(); // Una vez cargados los productos, los mostramos
-        actualizarCarrito(); // Actualizamos el carrito al inicio
+        mostrarProductos(); 
+        actualizarCarrito(); 
     })
     .catch(error => console.error('Error al cargar los productos:', error));
 
-// Función para mostrar los productos en la página
+//mostrar los productos en la página
 function mostrarProductos() {
     const contenedorProductos = document.getElementById("productos");
-    contenedorProductos.innerHTML = ''; // Limpiar el contenedor antes de mostrar los productos
+    contenedorProductos.innerHTML = '';
 
     productos.forEach(producto => {
         const divProducto = document.createElement("div");
@@ -35,7 +34,7 @@ function mostrarProductos() {
     });
 }
 
-// Función para agregar un producto al carrito
+//agregar un producto al carrito
 function agregarAlCarrito(idProducto) {
     const producto = productos.find(prod => prod.id === idProducto);
     if (producto) {
@@ -48,7 +47,7 @@ function agregarAlCarrito(idProducto) {
     }
 }
 
-// Función para actualizar la visualización del carrito y total
+//actualizar la visualización del carrito y total
 function actualizarCarrito() {
     const contenedorCarrito = document.getElementById("carrito");
     const totalElement = document.getElementById("total");
@@ -62,7 +61,7 @@ function actualizarCarrito() {
     totalElement.textContent = `Total a pagar: $${total}`;
 }
 
-// Función para confirmar la compra
+//confirmar la compra
 function confirmarCompra() {
     if (carrito.length === 0) {
         alert("No hay productos en el carrito para comprar.");
@@ -81,5 +80,5 @@ function confirmarCompra() {
     }
 }
 
-// Evento para manejar la confirmación de compra
+//manejar la confirmación de compra
 document.getElementById('comprarButton').addEventListener('click', confirmarCompra);
