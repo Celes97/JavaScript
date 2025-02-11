@@ -1,14 +1,31 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Dosis', sans-serif; 
     background-color: #f4f4f4;
     color: #333;
     margin: 0;
     padding: 20px;
+
 }
 
+
 h1, h2 {
-    color: #4CAF50;
+    color: #9c7092;
     text-align: center;
+    font-family: 'Dosis', sans-serif; 
+}
+
+h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+    font-family: 'Dosis', sans-serif; 
+}
+
+h4 {
+    font-size: 20px;
+    color: #9c7092;
+    text-align: center;
+    font-family: 'Dosis', sans-serif;
 }
 
 p {
@@ -17,7 +34,12 @@ p {
     margin-bottom: 20px;
 }
 
-/* Products Section */
+#productos-carrito {
+    font-family: 'Dosis', sans-serif; 
+    color: #9c7092;
+
+}
+
 #productos {
     display: flex;
     flex-direction: column;
@@ -39,9 +61,8 @@ p {
 .producto:hover {
     transform: scale(1.05);
 }
-
 .producto button {
-    background-color: #4CAF50;
+    background-color: #e3d1e9;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -53,8 +74,87 @@ p {
 }
 
 .producto button:hover {
-    background-color: #45a049;
+    background-color: #91678b;
 }
+
+.producto img {
+    width: 200px;     
+    height: 200px;    
+    object-fit: cover;
+    border-radius: 8px; 
+    margin-bottom: 10px;
+}
+
+.producto-carrito  {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    margin-bottom: 20px;
+}
+
+/*botones*/
+/*seguir comprando botón*/
+.btn {
+    font-family: 'Dosis', sans-serif; 
+    position: absolute; 
+    top: 20px;  
+    right: 20px;         
+    padding: 10px 20px;
+    background-color: #e3d1e9; 
+    color: white; 
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px; 
+    font-size: 16px;
+    z-index: 10; 
+}
+
+.btn:hover {
+    background-color: #91678b; 
+}
+
+/*finalizar compra botón*/
+.boton {
+    font-family: 'Dosis', sans-serif;
+    bottom: 20px;  
+    right: 20px;   
+    font-family: 'Dosis', sans-serif !; 
+    padding: 15px 30px;  
+    background-color: #d29ce4; 
+    color: white; 
+    font-size: 16px; 
+    font-weight: bold; 
+    border: none;  
+    border-radius: 5px;  
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    cursor: pointer; 
+    text-decoration: none; 
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+.boton:hover {
+    background-color: #91678b;  
+    transform: scale(1.05);  
+}
+
+
+#form-envio button {
+    padding: 12px 20px;
+    background-color: #e3d1e9;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 20%; 
+    transition: background-color 0.3s ease;
+}
+
+#form-envio button:hover {
+    background-color: #91678b; 
+}
+
+
 
 #carrito {
     margin-top: 20px;
@@ -74,31 +174,222 @@ p {
     margin: 5px 0;
 }
 
-#total {
+/*hoja carrito de compra*/
+#resumen-compra {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/*hoja resumen total*/
+#total-resumen {
+    font-family: 'Dosis', sans-serif; 
     font-size: 20px;
-    font-weight: bold;
-    margin-top: 15px;
+    color: #91678b;
+    margin-top: 20px;
+    text-align: center; 
+    width: 50%; 
+    padding: 20px;
+    background-color: #f9f9f9; 
+    border-radius: 8px; 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+
+
+#resumen-carrito {
+    background-color: #f4f4f4; 
+    padding: 20px;
+    border-radius: 8px; 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+    max-width: 900px; 
+    margin: 20px auto; 
+    font-family: 'Dosis', sans-serif; 
+}
+
+
+#resumen-carrito h2 {
+    font-size: 24px;
+    color: #91678b; 
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+#productos-resumen {
+    background-color: #fff; 
+    padding: 15px;
+    border-radius: 8px; 
+    border: 1px solid #ccc; 
+    max-height: 400px; 
+    overflow-y: auto; 
     text-align: center;
 }
 
-#comprarButton {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 30px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    transition: background-color 0.3s;
+
+
+
+/* Estilo para el formulario de envío */
+#form-envio select,
+#form-envio input {
+    width: 100%; 
+    padding: 15px; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 18px; 
+    margin-bottom: 15px;
+    box-sizing: border-box; 
 }
 
-#comprarButton:hover {
-    background-color: #e53935;
+
+#form-envio label {
+    font-size: 16px; 
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
 }
+
+
+
+#informacion-pago {
+    margin-top: 15px;
+}
+
+
+#tarjeta-info {
+    margin-top: 20px;
+}
+
+#tarjeta-info input,
+#tarjeta-info select {
+    width: 100%;
+}
+
+
+#costo-envio {
+    font-size: 16px;
+    color: #333;
+    margin-top: 10px;
+}
+
+
+#total-carrito-popup {
+    background-color: #f9f9f9; 
+    padding: 15px; 
+    border-radius: 8px; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+    max-width: 300px; 
+    width: 100%; 
+    text-align: left; 
+    font-family: Arial, sans-serif; 
+    margin: 0 auto; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.popup {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); 
+    justify-content: center;
+    align-items: center;
+}
+
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative; 
+    width: 300px;
+    text-align: center;
+}
+
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #333;
+    font-weight: bold;
+}
+
+
+.popup-close:hover {
+    color: #f72929; 
+}
+
+
+#producto-popup-info img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+
+#ir-al-carrito {
+    background-color: #e3d1e9;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#ir-al-carrito:hover {
+    background-color: #91678b;
+}
+
+
+#ventana-emergente {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    z-index: 1000;
+    display: none;
+}
+
+#ventana-emergente .producto-img {
+    width: 50px; 
+    height: auto; 
+}
+
+#ventana-emergente #popup-close {
+    background: transparent;
+    border: none;
+    color: #000;
+    font-size: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+#ventana-emergente #popup-close:hover {
+    color: red;
+}
+
+
+
 
 @media screen and (max-width: 768px) {
     #productos {
@@ -113,3 +404,204 @@ p {
         width: 100%;
     }
 }
+
+
+
+.boton-cantidad {
+    background-color: #e3d1e9;; 
+    color: rgb(252, 252, 252); 
+    border: none; 
+    padding: 5px 10px; 
+    font-size: 12px; 
+    cursor: pointer; 
+    border-radius: 3px; 
+    transition: background-color 0.3s, transform 0.2s; 
+    display: inline-block; 
+    text-align: center; 
+    margin: 0 5px; 
+}
+
+.boton-cantidad:hover {
+    background-color: #91678b; 
+    transform: scale(1.1); 
+}
+
+.boton-cantidad:active {
+    background-color: #9ba898;
+}
+
+.cantidad {
+    font-size: 18px; 
+    padding: 0 10px; 
+}
+
+
+.boton-eliminar {
+    background-color: #e3d1e9;; 
+    color: rgb(255, 255, 255); 
+    border: none; 
+    padding: 5px 10px; 
+    font-size: 14px; 
+    cursor: pointer; 
+    border-radius: 3px; 
+    transition: background-color 0.3s, transform 0.2s; 
+    display: inline-block; 
+    text-align: center; 
+}
+
+.boton-eliminar:hover {
+    background-color: #91678b; 
+    transform: scale(1.1); 
+}
+
+.boton-eliminar:active {
+    transform: scale(1); 
+}
+
+
+
+#costo-envio-item {
+    font-size: 14px; 
+    color: #666; 
+    margin-top: 8px; 
+    display: flex; 
+    justify-content: space-between; 
+}
+
+
+#total-carrito-value, #envio-value {
+    font-size: 16px; 
+    color: #91678b; 
+}
+
+
+#costo-envio-item.show {
+    display: block; 
+}
+
+#total-carrito, #costo-envio-item {
+    border-bottom: 1px solid #ddd; 
+    padding-bottom: 8px; 
+    margin-bottom: 8px; 
+}
+
+
+#metodo-envio {
+    background-color: #f9f9f9; 
+    padding: 15px; 
+    border-radius: 8px; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+    max-width: 300px;
+    width: 100%; 
+    text-align: left;
+    font-family: Arial, sans-serif; 
+    margin: 20px auto;
+}
+
+
+#metodo-envio label {
+    font-size: 16px; 
+    color: #333;
+    margin-bottom: 10px; 
+    display: block; 
+}
+
+#metodo-envio select {
+    font-size: 14px; 
+    padding: 8px 12px; 
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+    background-color: #fff; 
+    width: 100%; 
+    margin-top: 5px; 
+    cursor: pointer; 
+}
+
+
+#codigo-postal  {
+    background-color: #f9f9f9; 
+    padding: 5px 5px;
+    border-radius: 8px; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+    max-width: 300px; 
+    width: 100%; 
+    text-align: left; 
+    font-family: 'Dosis', sans-serif; 
+    margin: 20px auto; 
+    display: inline-block; 
+    flex-direction: column; 
+    gap: 15px; 
+}
+
+#codigo-postal label {
+    font-size: 16px; 
+    color: #333; 
+    margin-bottom: 5px; 
+    display: block; 
+}
+
+
+#codigo-postal input {
+    font-size: 14px; 
+    padding: 8px 12px; 
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+    background-color: #fff;
+    width: 100%; 
+    margin-top: 5px; 
+    cursor: pointer; 
+}
+
+
+
+#codigo-postal #costo-envio {
+    font-size: 10px; 
+    font-family: 'Dosis', sans-serif; 
+    color: #333; 
+    margin-top: 5px; 
+}
+
+
+#iniciar-compra {
+    background-color: #d29ce4; 
+    font-family: 'Dosis', sans-serif; 
+    color: white; 
+    padding: 12px 20px; 
+    font-size: 16px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s;
+    width: 100%; 
+    margin-top: 15px; 
+}
+
+
+#iniciar-compra:hover {
+    background-color: #91678b;
+}
+
+
+#calcular-envio {
+    background-color: #e3d1e9; 
+    color: white; 
+    padding: 10px 20px; 
+    font-size: 14px;
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s, transform 0.2s; 
+    width: 100%; 
+}
+
+
+#calcular-envio:hover {
+    background-color: #91678b; 
+}
+
+
+#calcular-envio:active {
+    transform: scale(0.98); 
+}
+
+

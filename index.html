@@ -4,43 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador de Carrito de Compras</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script defer src="js/main.js"></script>
+
+    <!--toastify JS-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <!--fuente-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+
 
     <!--estilo propio de CSS-->
     <link rel="stylesheet" href="CSS/style.css">
-    
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        .producto {
-            margin: 10px 0;
-        }
-        .producto button {
-            padding: 5px 10px;
-        }
-        #carrito, #total {
-            margin-top: 20px;
-        }
-    </style>
+
+    <!--estilo de icono-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body>
     <h1>Carrito de Compras</h1>
     <p>Este simulador te permite agregar productos a tu carrito, ver el contenido del carrito y realizar la compra.</p>
 
-    <h2>Productos disponibles:</h2>
-    <div id="productos"></div> <!-- Aquí se cargarán los productos desde el JSON -->
 
-    <h2>Tu carrito:</h2>
-    <div id="carrito">
-        <p>El carrito está vacío.</p>
+    <h2>Productos disponibles:</h2>
+    <div id="productos"></div>
+    <div id="carrito" style="display: none;">
+    </div>
+    <div id="total-carrito" style="display: none;">
+        <span>Total: $<span id="total-carrito-value">0</span></span>
     </div>
 
-    <p id="total">Total a pagar: $0</p>
+    <button id="comprarButton" style="display: none;">Confirmar Compra</button>
 
-    <button id="comprarButton">Confirmar Compra</button>
+    <div id="popup-agregado" class="popup">
+        <div class="popup-content">
+            <h4>producto agregado al carrito!</h4>
+            <span id="popup-close" class="popup-close">&times;</span>
 
+            <div id="producto-popup-info">
+                <img id="producto-img" src="" alt="Imagen del producto">
+                <p id="producto-nombre"></p>
+                <p id="producto-precio"></p>
+            </div>
+            <button id="ir-al-carrito">Ir al carrito</button>
+        </div>
+    </div>
+
+<div id="ventana-emergente" style="display: none; position: fixed; top: 0; right: 0; background: white; width: 300px; height: 100%; padding: 20px; box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3); z-index: 1000;">
+    <span id="carrito-popup-close" class="popup-close">&times;</span>
+
+    <h2>Carrito de Compras</h2>
+    <div id="productos-carrito">
+        <div class="producto-item">
+            <span class="producto-nombre">Producto 1</span>
+            <span class="producto-precio">$100.00</span>
+
+            <img src="imagenes/venta1.jfif" alt="Imagen del producto" class="producto-imagen" />
+        </div>
+    </div>
+
+<div id="total-carrito-popup">
+    <div id="total-carrito">
+        <span>Total: $<span id="total-carrito-value">0</span></span>
+    </div>
+    <div id="costo-envio-item" style="display: none;">
+        <span>Envío: $<span id="envio-value">0</span></span>
+    </div>
+</div>
+
+    <div>
+        <label for="metodo-envio">Método de envío:</label>
+        <select id="metodo-envio">
+            <option value="retirar">Retiro en el local</option>
+            <option value="envio">Envío por correo</option>
+        </select>
+    </div>
+
+    <div id="envio-item-container"></div>
+
+    <div id="codigo-postal-container" style="display: none;">
+        <label for="codigo-postal">Código Postal:</label>
+        <input type="text" id="codigo-postal" placeholder="Ej. 1000">
+        <button id="calcular-envio">Calcular</button>
+        <div id="costo-envio">Costo de Envío: $0</div>
+    </div>
+
+    <button id="iniciar-compra">Iniciar Compra</button>
+</div>
 </body>
 </html>
+
 
