@@ -5,7 +5,7 @@ let total = parseFloat(localStorage.getItem('total')) || 0;
 let productos = [];
 
 // Cargar productos desde el JSON
-fetch('../data/productos.json')
+fetch('data/productos.json')
     .then(response => {
         if (!response.ok) {
             throw new Error('Error al cargar el archivo JSON');
